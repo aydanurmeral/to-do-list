@@ -1,0 +1,36 @@
+<div class="container my-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+To-Do List
+    </div>
+    <div class="card-body">
+
+     
+      <div class="input-group mb-3">
+        <input type="text" [(ngModel)]="newTask" class="form-control" placeholder="Yeni görev ekle...">
+        <button class="btn btn-success" (click)="addItem()">Ekle</button>
+      </div>
+
+   
+      <div class="form-check mb-3">
+        <input type="checkbox" [(ngModel)]="isDisplayAll" class="form-check-input" id="displayAll">
+        <label for="displayAll" class="form-check-label">Tümünü Göster</label>
+      </div>
+
+
+      <ul class="list-group">
+        <li *ngFor="let item of getItems(); let i = index"
+            class="list-group-item d-flex justify-content-between align-items-center">
+
+          <span [class.text-decoration-line-through]="item.action">{{ item.description }}</span>
+
+          <div>
+            <input type="checkbox" class="form-check-input me-2" [(ngModel)]="item.action" (change)="saveData()">
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(i)">🗑</button>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
